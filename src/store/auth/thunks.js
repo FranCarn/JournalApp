@@ -1,4 +1,4 @@
-import { doc, setDoc } from "firebase/firestore/lite";
+import { deleteDoc, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import {
   loginUser,
@@ -7,7 +7,13 @@ import {
   signInWithGoogle,
 } from "../../firebase/providers";
 import { loadNotes } from "../../helpers/loadNotes";
-import { setNotes, setSaving, updateNote } from "../journal/journalSlice";
+import {
+  clearNotesLogout,
+  deleteNoteById,
+  setNotes,
+  setSaving,
+  updateNote,
+} from "../journal/journalSlice";
 import { checkCredentials, logout, login } from "./";
 
 export const checkingAuthentication = (email, password) => {
@@ -53,6 +59,7 @@ export const startLogin = ({ email, password }) => {
 export const startLogout = () => {
   return async (dispatch) => {
     await logoutFirebase();
+    dispatch(clearNotesLogout());
     dispatch(logout({}));
   };
 };
@@ -76,5 +83,15 @@ export const startSaveNote = () => {
     const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
     await setDoc(docRef, noteToFireStore, { merge: true });
     dispatch(updateNote(note));
+  };
+};
+
+export const startDeletingNote = () => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    const { active: note } = getState().journal;
+    const docRef = doc(FirebaseDB, `${uid}/journal/notes/${note.id}`);
+    await deleteDoc(docRef);
+    dispatch(deleteNoteById(note.id));
   };
 };
