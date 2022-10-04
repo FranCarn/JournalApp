@@ -56,7 +56,7 @@ export const RegisterPage = () => {
   };
 
   return (
-    <AuthLayout title="Register">
+    <AuthLayout title="Registrarse">
       <form onSubmit={onSubmit}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>

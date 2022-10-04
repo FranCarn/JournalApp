@@ -36,7 +36,7 @@ export const LoginPage = () => {
     dispatch(startGoogleSignIn());
   };
   return (
-    <AuthLayout title="Login">
+    <AuthLayout title="Ingresar">
       <form onSubmit={(e) => onSubmit(e)}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -72,7 +72,7 @@ export const LoginPage = () => {
                 variant="contained"
                 fullWidth
               >
-                Login
+                Ingresar
               </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
