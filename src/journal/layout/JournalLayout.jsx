@@ -1,8 +1,6 @@
 import { Box, Toolbar } from "@mui/material";
 import React from "react";
-import { NavBar, SideBar } from "../components";
-
-const drawerWidth = 240;
+import { NavBars } from "../components";
 
 export const JournalLayout = ({ children }) => {
   return (
@@ -10,8 +8,7 @@ export const JournalLayout = ({ children }) => {
       sx={{ display: "flex" }}
       className="animate__animated animate__fadeIn animate__faster"
     >
-      <NavBar drawerWidth={drawerWidth} />
-      <SideBar drawerWidth={drawerWidth} />
+      <NavBars />
       <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
         <Toolbar />
         {children}
