@@ -40,7 +40,9 @@ export const NoteView = () => {
   }, [messageSaved]);
 
   const onSaveNote = () => {
-    dispatch(startSaveNote());
+    title.length === 0
+      ? Swal.fire("No se puede guardar una nota vacia", "", "error")
+      : dispatch(startSaveNote());
   };
 
   const onFileInputChange = ({ target }) => {
