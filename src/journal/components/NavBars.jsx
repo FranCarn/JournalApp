@@ -45,10 +45,10 @@ export const NavBars = (props) => {
       <Divider />
       <List>
         {notes.map((note) => (
-          <>
-            <SideBarItem key={note.id} {...note} />
+          <div key={note.id}>
+            <SideBarItem {...note} />
             <Divider />
-          </>
+          </div>
         ))}
       </List>
     </>

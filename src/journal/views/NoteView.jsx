@@ -117,7 +117,12 @@ export const NoteView = () => {
         />
       </Grid>
       <Grid container justifyContent="end" alignItems={"center"}>
-        <Button onClick={onDelete} sx={{ mt: 2 }} color="error">
+        <Button
+          disabled={isSaving}
+          onClick={onDelete}
+          sx={{ mt: 2 }}
+          color="error"
+        >
           <DeleteOutline />
         </Button>
       </Grid>
